@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anderson Torres | Analista de Dados & Automação</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --accent: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --badge-bg: rgba(56, 189, 248, 0.1);
+            --badge-text: #38bdf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 650px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section Commons */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Skills / Tech Stack */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: #0f172a;
+            border-color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 1.2rem;
+        }
+
+        .project-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background-color: #0f172a;
+            border: 1px solid var(--card-border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Anderson<span>.Data</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <div class="hero-content">
+            <p class="hero-subtitle">Analista de Dados & Automação</p>
+            <h1 class="hero-title">Anderson Torres da Silva</h1>
+            <p class="hero-description">
+                Especialista em transformar dados brutos em inteligência estratégica de negócios. 
+                Com sólida experiência técnica desenvolvida em Bootcamps e projetos práticos, combino 
+                <strong>Python, Power BI, SQL e Google Apps Script</strong> para construir dashboards, 
+                pipelines ETL e soluções de automação.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-code"></i> Ver Projetos</a>
+                <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-brands fa-python"></i>
+                <h3>Python</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Pandas, NumPy, Streamlit, APIs</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h3>Power BI</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">DAX, Power Query, UX/UI Dashboards</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database"></i>
+                <h3>SQL & ETL</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Consultas, Modelagem, Limpeza de Dados</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-gear"></i>
+                <h3>Apps Script</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Automação de Processos & Integrações</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projetos em Destaque</h2>
+        
+        <!-- Filter Category Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProjects('all')">Todos</button>
+            <button class="filter-btn" onclick="filterProjects('bi')">Análise & BI</button>
+            <button class="filter-btn" onclick="filterProjects('automation')">Engenharia & Automação</button>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- GourmetBox (Fancy Effect) -->
+            <div class="project-card" data-category="bi">
+                <div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Pandas</span>
+                    </div>
+                    <h3 class="project-title">GourmetBox (Efeito Fancy)</h3>
+                    <p class="project-description">
+                        Aplicação web interativa desenvolvida para análise detalhada do faturamento e performance de vendas no setor gastronômico. Inclui pipeline ETL completo para tratamento de dados operacionais.
+                    </p>
+                </div>
+                <div class="project-links">
+                    <a href="https://efeitofancy-gourmetbox.streamlit.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo Online</a>
+                    <a href="https://github.com/torres970823-cyber" target="_blank"><i class="fa-brands fa-github"></i> Código</a>
+                </div>
+            </div>
+
+            <!-- Estacionamento SaaS -->
+            <div class="project-card" data-category="automation">
+                <div>
+                    <div class="project-tags">
+                        <span class="tag">Python API</span>
+                        <span class="tag">Apps Script</span>
+                        <span class="tag">Vercel</span>
+                    </div>
+                    <h3 class="project-title">Estacionamento SaaS</h3>
+                    <p class="project-description">
+                        Plataforma SaaS para gestão operacional e controle de permanência de veículos. Combina microsserviços em Python, automação via Apps Script e design estruturado com IA.
+                    </p>
+                </div>
+                <div class="project-links">
+                    <a href="https://estacionamento-saas-ashy.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo Online</a>
+                    <a href="https://github.com/torres970823-cyber/estacionamento-saas" target="_blank"><i class="fa-brands fa-github"></i> Repositório</a>
+                </div>
+            </div>
+
+            <!-- Gerenciamento de Frota -->
+            <div class="project-card" data-category="automation">
+                <div>
+                    <div class="project-tags">
+                        <span class="tag">Apps Script</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Vercel</span>
+                    </div>
+                    <h3 class="project-title">Gerenciamento de Frota</h3>
+                    <p class="project-description">
+                        Sistema focado em otimização operacional e logística corporativa. Desenvolvido para centralizar cadastros, status e monitoramento de frota com integração de dados.
+                    </p>
+                </div>
+                <div class="project-links">
+                    <a href="https://atividade-frota-generation-amber.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo Online</a>
+                    <a href="https://github.com/torres970823-cyber" target="_blank"><i class="fa-brands fa-github"></i> Repositório</a>
+                </div>
+            </div>
+
+            <!-- Dashboard Petshop -->
+            <div class="project-card" data-category="bi">
+                <div>
+                    <div class="project-tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Power Query</span>
+                        <span class="tag">UX/UI</span>
+                    </div>
+                    <h3 class="project-title">Dashboard de Vendas Petshop</h3>
+                    <p class="project-description">
+                        Relatório executivo em Power BI focado no segmento pet. Apresenta análise de vendas regionais, distribuição geográfica, ticket médio e métricas estratégicas.
+                    </p>
+                </div>
+                <div class="project-links">
+                    <a href="https://www.linkedin.com/in/torres970823/" target="_blank"><i class="fa-brands fa-linkedin"></i> Post / Detalhes</a>
+                </div>
+            </div>
+
+            <!-- genMoedas -->
+            <div class="project-card" data-category="bi">
+                <div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Google Colab</span>
+                        <span class="tag">Estruturas de Dados</span>
+                    </div>
+                    <h3 class="project-title">genMoedas (Conversor Inteligente)</h3>
+                    <p class="project-description">
+                        Ferramenta em Python projetada para manipulação de dados monetários, suporte a cadastro de novas moedas em tempo de execução e manipulação dinâmica de entradas.
+                    </p>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/torres970823-cyber" target="_blank"><i class="fa-brands fa-github"></i> Repositório</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <h2>Vamos trabalhar juntos?</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">
+                Estou disponível para oportunidades como Analista de Dados, Freelancer (Workana) e projetos de automação.
+            </p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="contact-btn">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/torres970823-cyber" target="_blank" class="contact-btn">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="mailto:anderson.torres970823@gmail.com" class="contact-btn">
+                    <i class="fa-solid fa-envelope"></i> E-mail
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Anderson Torres da Silva. Desenvolvido para portfólio profissional.</p>
+    </footer>
+
+    <!-- Filter Script -->
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
