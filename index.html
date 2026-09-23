@@ -63,18 +63,6 @@
             pointer-events: none;
         }
 
-        .glow-sphere-3 {
-            position: fixed;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
         /* Header / Navbar Glassmorphism */
         header {
             position: fixed;
@@ -143,8 +131,38 @@
             margin: 0 auto;
         }
 
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            width: 100%;
+        }
+
         .hero-content {
-            max-width: 800px;
+            max-width: 700px;
+        }
+
+        /* Profile Image Container */
+        .hero-image-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--card-border);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 0 0 45px rgba(56, 189, 248, 0.4);
         }
 
         .hero-badge {
@@ -162,7 +180,7 @@
         }
 
         .hero-title {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
@@ -173,10 +191,10 @@
         }
 
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
             margin-bottom: 2.5rem;
-            max-width: 680px;
+            max-width: 650px;
             font-weight: 400;
         }
 
@@ -208,7 +226,6 @@
         .btn-primary:hover {
             background-color: #7dd3fc;
             transform: translateY(-2px);
-            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
         }
 
         .btn-outline {
@@ -261,7 +278,6 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             padding: 2rem 1.5rem;
             border-radius: 16px;
             transition: all 0.3s ease;
@@ -270,7 +286,6 @@
         .skill-card:hover {
             transform: translateY(-5px);
             border-color: var(--card-hover-border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .skill-icon {
@@ -314,7 +329,6 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 0.85rem;
-            backdrop-filter: blur(10px);
             transition: all 0.3s;
         }
 
@@ -322,7 +336,6 @@
             background-color: var(--primary);
             color: #030712;
             border-color: var(--primary);
-            box-shadow: 0 0 15px var(--primary-glow);
         }
 
         .projects-grid {
@@ -335,19 +348,17 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border-radius: 20px;
             padding: 2.2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-8px);
             border-color: var(--card-hover-border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--primary-glow);
         }
 
         .project-tags {
@@ -372,7 +383,6 @@
             font-weight: 700;
             margin-bottom: 0.8rem;
             color: var(--text-main);
-            letter-spacing: -0.3px;
         }
 
         .project-description {
@@ -410,32 +420,17 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border-radius: 24px;
             padding: 4rem 2rem;
             text-align: center;
             max-width: 850px;
             margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .contact-title {
             font-size: 2.4rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            letter-spacing: -0.5px;
         }
 
         .contact-links {
@@ -465,7 +460,6 @@
             border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* Footer */
@@ -477,10 +471,22 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* Responsive Layout for Mobile */
+        @media (max-width: 900px) {
+            .hero-layout {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2.5rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.6rem;
             }
             .nav-links {
                 display: none;
@@ -490,10 +496,8 @@
 </head>
 <body>
 
-    <!-- Glowing Mesh Spheres -->
     <div class="glow-sphere-1"></div>
     <div class="glow-sphere-2"></div>
-    <div class="glow-sphere-3"></div>
 
     <!-- Header Navigation -->
     <header>
@@ -513,18 +517,25 @@
 
     <!-- Hero Section -->
     <section class="hero" id="about">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fa-solid fa-sparkles"></i> Analista de Dados & Automação
+        <div class="hero-layout">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-sparkles"></i> Analista de Dados & Automação
+                </div>
+                <h1 class="hero-title">Transformando dados em decisões estratégicas.</h1>
+                <p class="hero-description">
+                    Especialista em construir dashboards de alto impacto, automações inteligentes e pipelines de dados com 
+                    <strong>Python, Power BI, SQL e Google Apps Script</strong>.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> Explorar Projetos</a>
+                    <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                </div>
             </div>
-            <h1 class="hero-title">Transformando dados em decisões estratégicas.</h1>
-            <p class="hero-description">
-                Especialista em construir dashboards de alto impacto, automações inteligentes e pipelines de dados com 
-                <strong>Python, Power BI, SQL e Google Apps Script</strong>.
-            </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> Explora Projetos</a>
-                <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+
+            <!-- Profile Image Area -->
+            <div class="hero-image-wrapper">
+                <img src="perfil.jpg" alt="Foto de Anderson Torres" class="profile-img">
             </div>
         </div>
     </section>
@@ -566,7 +577,6 @@
             <h2 class="section-title">Projetos Em Destaque</h2>
         </div>
         
-        <!-- Filter Category Buttons -->
         <div class="filter-buttons">
             <button class="filter-btn active" onclick="filterProjects('all')">Todos</button>
             <button class="filter-btn" onclick="filterProjects('bi')">Análise & BI</button>
@@ -575,7 +585,6 @@
 
         <div class="projects-grid">
 
-            <!-- GourmetBox (Fancy Effect) -->
             <div class="project-card" data-category="bi">
                 <div>
                     <div class="project-tags">
@@ -594,7 +603,6 @@
                 </div>
             </div>
 
-            <!-- Estacionamento SaaS -->
             <div class="project-card" data-category="automation">
                 <div>
                     <div class="project-tags">
@@ -613,7 +621,6 @@
                 </div>
             </div>
 
-            <!-- Gerenciamento de Frota -->
             <div class="project-card" data-category="automation">
                 <div>
                     <div class="project-tags">
@@ -632,7 +639,6 @@
                 </div>
             </div>
 
-            <!-- Dashboard Petshop -->
             <div class="project-card" data-category="bi">
                 <div>
                     <div class="project-tags">
@@ -650,7 +656,6 @@
                 </div>
             </div>
 
-            <!-- genMoedas -->
             <div class="project-card" data-category="bi">
                 <div>
                     <div class="project-tags">
@@ -676,7 +681,7 @@
         <div class="contact-container">
             <h2 class="contact-title">Vamos construir soluções juntos?</h2>
             <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-                Aberto a oportunidades formais de mercado, projetos de freelancing na Workana e parcerias de automação de dados.
+                Aberto a oportunidades formais de mercado, projetos na Workana e parcerias de automação de dados.
             </p>
             <div class="contact-links">
                 <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="contact-btn">
