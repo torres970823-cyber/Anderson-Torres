@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anderson Torres | Analista de Dados & Automação</title>
     <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --card-border: #334155;
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover-border: rgba(56, 189, 248, 0.4);
             --primary: #38bdf8;
-            --primary-hover: #0284c7;
+            --primary-glow: rgba(56, 189, 248, 0.25);
             --accent: #818cf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --purple-glow: rgba(129, 140, 248, 0.2);
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
             --badge-bg: rgba(56, 189, 248, 0.1);
             --badge-text: #38bdf8;
         }
@@ -26,7 +28,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -34,15 +37,52 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Header / Navbar */
+        /* Gradient Glowing Background Elements */
+        .glow-sphere-1 {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-sphere-2 {
+            position: fixed;
+            bottom: -150px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--purple-glow) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-sphere-3 {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header / Navbar Glassmorphism */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
             border-bottom: 1px solid var(--card-border);
         }
@@ -57,15 +97,22 @@
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--text-main);
             text-decoration: none;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .logo span {
-            color: var(--text-main);
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .nav-links {
@@ -78,7 +125,8 @@
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s;
         }
 
         .nav-links a:hover {
@@ -90,7 +138,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 8rem 2rem 4rem 2rem;
+            padding: 9rem 2rem 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -99,45 +147,53 @@
             max-width: 800px;
         }
 
-        .hero-subtitle {
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--badge-bg);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
             color: var(--primary);
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-description {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 650px;
+            margin-bottom: 2.5rem;
+            max-width: 680px;
+            font-weight: 400;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.8rem;
-            border-radius: 8px;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
             font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -145,18 +201,21 @@
 
         .btn-primary {
             background-color: var(--primary);
-            color: #0f172a;
+            color: #030712;
+            box-shadow: 0 0 25px var(--primary-glow);
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-hover);
+            background-color: #7dd3fc;
             transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
         }
 
         .btn-outline {
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            background-color: transparent;
+            backdrop-filter: blur(10px);
         }
 
         .btn-outline:hover {
@@ -167,67 +226,82 @@
 
         /* Section Commons */
         section {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-title {
-            font-size: 2rem;
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary);
+            font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 2.5rem;
-            position: relative;
-            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 50%;
-            height: 3px;
-            background-color: var(--primary);
-            border-radius: 2px;
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
-        /* Skills / Tech Stack */
+        /* Skills Glass Cards */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
         }
 
         .skill-card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary);
+            border-color: var(--card-hover-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .skill-card i {
-            font-size: 2.5rem;
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--primary);
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .skill-card h3 {
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
         }
 
-        /* Projects Section */
+        .skill-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Projects Glass Cards */
         .filter-buttons {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+            gap: 0.8rem;
+            margin-bottom: 3rem;
             flex-wrap: wrap;
         }
 
@@ -235,55 +309,62 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-muted);
-            padding: 0.6rem 1.2rem;
+            padding: 0.6rem 1.4rem;
             border-radius: 30px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
             transition: all 0.3s;
         }
 
         .filter-btn.active, .filter-btn:hover {
             background-color: var(--primary);
-            color: #0f172a;
+            color: #030712;
             border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 2rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 2.2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
+            transform: translateY(-8px);
+            border-color: var(--card-hover-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--primary-glow);
         }
 
         .project-tags {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .tag {
-            background-color: var(--badge-bg);
-            color: var(--badge-text);
-            font-size: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            font-size: 0.75rem;
             font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
         }
 
         .project-title {
@@ -291,26 +372,28 @@
             font-weight: 700;
             margin-bottom: 0.8rem;
             color: var(--text-main);
+            letter-spacing: -0.3px;
         }
 
         .project-description {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
             flex-grow: 1;
         }
 
         .project-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             border-top: 1px solid var(--card-border);
-            padding-top: 1.2rem;
+            padding-top: 1.4rem;
         }
 
         .project-links a {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -324,20 +407,42 @@
 
         /* Contact Section */
         .contact-container {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 3rem 2rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 4rem 2rem;
             text-align: center;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .contact-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.2rem;
+            margin-top: 2.5rem;
             flex-wrap: wrap;
         }
 
@@ -345,13 +450,14 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            background-color: #0f172a;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s;
         }
 
@@ -359,21 +465,22 @@
             border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
             border-top: 1px solid var(--card-border);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             .nav-links {
                 display: none;
@@ -383,10 +490,18 @@
 </head>
 <body>
 
+    <!-- Glowing Mesh Spheres -->
+    <div class="glow-sphere-1"></div>
+    <div class="glow-sphere-2"></div>
+    <div class="glow-sphere-3"></div>
+
     <!-- Header Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">Anderson<span>.Data</span></a>
+            <a href="#" class="logo">
+                <div class="logo-dot"></div>
+                Anderson Torres
+            </a>
             <ul class="nav-links">
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#skills">Habilidades</a></li>
@@ -399,16 +514,16 @@
     <!-- Hero Section -->
     <section class="hero" id="about">
         <div class="hero-content">
-            <p class="hero-subtitle">Analista de Dados & Automação</p>
-            <h1 class="hero-title">Anderson Torres da Silva</h1>
+            <div class="hero-badge">
+                <i class="fa-solid fa-sparkles"></i> Analista de Dados & Automação
+            </div>
+            <h1 class="hero-title">Transformando dados em decisões estratégicas.</h1>
             <p class="hero-description">
-                Especialista em transformar dados brutos em inteligência estratégica de negócios. 
-                Com sólida experiência técnica desenvolvida em Bootcamps e projetos práticos, combino 
-                <strong>Python, Power BI, SQL e Google Apps Script</strong> para construir dashboards, 
-                pipelines ETL e soluções de automação.
+                Especialista em construir dashboards de alto impacto, automações inteligentes e pipelines de dados com 
+                <strong>Python, Power BI, SQL e Google Apps Script</strong>.
             </p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-code"></i> Ver Projetos</a>
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> Explora Projetos</a>
                 <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
             </div>
         </div>
@@ -416,34 +531,40 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Habilidades Técnicas</h2>
+        <div class="section-header">
+            <p class="section-subtitle">Minhas Competências</p>
+            <h2 class="section-title">Tech Stack & Ferramentas</h2>
+        </div>
         <div class="skills-grid">
             <div class="skill-card">
-                <i class="fa-brands fa-python"></i>
-                <h3>Python</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Pandas, NumPy, Streamlit, APIs</p>
+                <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                <h3>Python & Data Science</h3>
+                <p>Pandas, NumPy, Streamlit, Engenharia de Dados & Consumo de APIs.</p>
             </div>
             <div class="skill-card">
-                <i class="fa-solid fa-chart-pie"></i>
-                <h3>Power BI</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">DAX, Power Query, UX/UI Dashboards</p>
+                <div class="skill-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3>Power BI & Business Intelligence</h3>
+                <p>Modelagem de Dados, DAX Avançado, Power Query e Design UX/UI.</p>
             </div>
             <div class="skill-card">
-                <i class="fa-solid fa-database"></i>
-                <h3>SQL & ETL</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Consultas, Modelagem, Limpeza de Dados</p>
+                <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+                <h3>SQL & Bancos de Dados</h3>
+                <p>Consultas complexas, Joins, Aggregations e Estruturação de Dados.</p>
             </div>
             <div class="skill-card">
-                <i class="fa-solid fa-gear"></i>
-                <h3>Apps Script</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">Automação de Processos & Integrações</p>
+                <div class="skill-icon"><i class="fa-solid fa-gear"></i></div>
+                <h3>Automação & Apps Script</h3>
+                <p>Integração de planilhas, envio de relatórios e rotinas automáticas.</p>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-        <h2 class="section-title">Projetos em Destaque</h2>
+        <div class="section-header">
+            <p class="section-subtitle">Portfólio Prático</p>
+            <h2 class="section-title">Projetos Em Destaque</h2>
+        </div>
         
         <!-- Filter Category Buttons -->
         <div class="filter-buttons">
@@ -464,7 +585,7 @@
                     </div>
                     <h3 class="project-title">GourmetBox (Efeito Fancy)</h3>
                     <p class="project-description">
-                        Aplicação web interativa desenvolvida para análise detalhada do faturamento e performance de vendas no setor gastronômico. Inclui pipeline ETL completo para tratamento de dados operacionais.
+                        Aplicação web interativa desenvolvida para análise detalhada do faturamento e performance de vendas no setor gastronômico com rotinas de ETL.
                     </p>
                 </div>
                 <div class="project-links">
@@ -483,7 +604,7 @@
                     </div>
                     <h3 class="project-title">Estacionamento SaaS</h3>
                     <p class="project-description">
-                        Plataforma SaaS para gestão operacional e controle de permanência de veículos. Combina microsserviços em Python, automação via Apps Script e design estruturado com IA.
+                        Plataforma SaaS para gestão operacional e controle de permanência de veículos. Combina microsserviços em Python, automação e design guiado por IA.
                     </p>
                 </div>
                 <div class="project-links">
@@ -502,7 +623,7 @@
                     </div>
                     <h3 class="project-title">Gerenciamento de Frota</h3>
                     <p class="project-description">
-                        Sistema focado em otimização operacional e logística corporativa. Desenvolvido para centralizar cadastros, status e monitoramento de frota com integração de dados.
+                        Sistema focado em otimização operacional e logística corporativa. Centraliza cadastros, rastreamento de veículos e automação de planilhas.
                     </p>
                 </div>
                 <div class="project-links">
@@ -521,11 +642,11 @@
                     </div>
                     <h3 class="project-title">Dashboard de Vendas Petshop</h3>
                     <p class="project-description">
-                        Relatório executivo em Power BI focado no segmento pet. Apresenta análise de vendas regionais, distribuição geográfica, ticket médio e métricas estratégicas.
+                        Relatório executivo em Power BI focado no segmento pet. Apresenta análise de vendas regionais, distribuição geográfica, ticket médio e KPIs.
                     </p>
                 </div>
                 <div class="project-links">
-                    <a href="https://www.linkedin.com/in/torres970823/" target="_blank"><i class="fa-brands fa-linkedin"></i> Post / Detalhes</a>
+                    <a href="https://www.linkedin.com/in/torres970823/" target="_blank"><i class="fa-brands fa-linkedin"></i> Ver Detalhes</a>
                 </div>
             </div>
 
@@ -539,7 +660,7 @@
                     </div>
                     <h3 class="project-title">genMoedas (Conversor Inteligente)</h3>
                     <p class="project-description">
-                        Ferramenta em Python projetada para manipulação de dados monetários, suporte a cadastro de novas moedas em tempo de execução e manipulação dinâmica de entradas.
+                        Ferramenta em Python projetada para manipulação de dados monetários, cadastro de moedas em tempo de execução e tratamento dinâmico de entradas.
                     </p>
                 </div>
                 <div class="project-links">
@@ -553,9 +674,9 @@
     <!-- Contact Section -->
     <section id="contact">
         <div class="contact-container">
-            <h2>Vamos trabalhar juntos?</h2>
-            <p style="color: var(--text-muted); margin-top: 0.5rem;">
-                Estou disponível para oportunidades como Analista de Dados, Freelancer (Workana) e projetos de automação.
+            <h2 class="contact-title">Vamos construir soluções juntos?</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                Aberto a oportunidades formais de mercado, projetos de freelancing na Workana e parcerias de automação de dados.
             </p>
             <div class="contact-links">
                 <a href="https://www.linkedin.com/in/torres970823/" target="_blank" class="contact-btn">
@@ -573,7 +694,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Anderson Torres da Silva. Desenvolvido para portfólio profissional.</p>
+        <p>© 2026 Anderson Torres da Silva. Todos os direitos reservados.</p>
     </footer>
 
     <!-- Filter Script -->
